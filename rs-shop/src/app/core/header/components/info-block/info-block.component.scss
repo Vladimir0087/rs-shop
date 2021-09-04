@@ -19,6 +19,16 @@
   img{
     margin-left: 5px;
   }
+  a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+  }
+  a:hover{
+    transition: 1s;
+    color: rgb(255, 0, 0);
+  }
   button{
     color: rgb(65, 65, 65)
   }
@@ -30,6 +40,12 @@
   margin-left: 10px;
   border: none;
   background: none;
+  cursor: pointer;
+}
+
+.contacts-btn:hover{
+  transition: 1s;
+  color: rgb(255, 0, 0) !important;
 }
 .mat-menu-btns{
   display: flex;
@@ -41,4 +57,9 @@
   font-size: 0.7rem;
   line-height: 4px;
 }
-
+.menu-phones{
+  font-size: 14px;
+  line-height: 48px;
+  height: 48px;
+  padding-left: 15px;
+}

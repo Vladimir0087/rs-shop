@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./info-block.component.scss'],
 })
 export class InfoBlockComponent {
-  public selected = 'minsk';
+  public selected = 'Минск';
+
+  public cities = ['Минск', 'Брест', 'Гродно', 'Гомель', 'Могилев', 'Витебск'];
 }

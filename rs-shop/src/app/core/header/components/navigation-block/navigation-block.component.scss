@@ -13,6 +13,11 @@
     display: flex;
     align-items: center;
     width: 20%;
+    border: 1px solid rgb(175, 166, 166);
+  }
+  button:hover{
+    transition: 1s;
+    background: rgb(255, 255, 255);
   }
   img{
     padding-right: 5px;
@@ -48,4 +53,38 @@
     border: none;
     color: rgb(255, 255, 255);
   }
+}
+.account-btns{
+  display: flex;
+  align-items: center;
+
+  img{
+    margin-right: 5px;
+  }
+}
+.user-block{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.user-in-btn{
+  margin-top: 5px;
+  width: 70px;
+  height: 40px;
+  border-radius: 10%;
+  background: rgb(39, 78, 255);
+  color: rgb(255, 255, 255);
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+.user-in-btn:hover{
+  transition: 1s;
+  background: rgb(0, 26, 141);
+}
+.user-ava{
+  background: rgb(168, 168, 168);
+  border-radius: 50%;
 }

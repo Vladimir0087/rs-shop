@@ -1,9 +1,19 @@
 <div class="navigation-block">
-  <img src="../../../../../assets/logo.png" alt="logo" class="shop-log">
-  <button><img src="../../../../../assets/goods.png" alt="goods">Каталог товаров</button>
+  <img src="assets/logo.png" alt="logo" class="shop-log">
+  <button><img src="assets/goods.png" alt="goods">Каталог товаров</button>
   <input type="text" class="search-input" placeholder="Поиск товаров">
-  <button><img src="../../../../../assets/account.png" alt="goods">Аккаунт</button>
-  <button><img src="../../../../../assets/basket.png" alt="goods">Корзина</button>
+  <button mat-button [matMenuTriggerFor]="menu"><img src="assets/account.png" alt="goods">Аккаунт</button>
+  <mat-menu #menu="matMenu">
+    <div class="user-block">
+      <img src="assets/userava.png" alt="mts" class="user-ava">
+      <button class="user-in-btn">Войти</button>
+    </div>
+    <button mat-menu-item class="account-btns"><img src="assets/basket.png" alt="call">Корзина</button>
+    <button mat-menu-item class="account-btns"><img src="assets/like.png" alt="writeus">Избранные товары</button>
+    <button mat-menu-item class="account-btns"><img src="assets/view.png" alt="call">Просмотренные</button>
+    <button mat-menu-item class="account-btns"><img src="assets/compare.png" alt="writeus">Списки сравнения</button>
+  </mat-menu>
+  <button><img src="assets/basket.png" alt="goods">Корзина</button>
 </div>
 <div class="navigation-by-categories-wrapper">
   <div class="navigation-by-categories">

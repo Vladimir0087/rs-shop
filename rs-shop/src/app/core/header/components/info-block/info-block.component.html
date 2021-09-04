@@ -1,32 +1,32 @@
 <div class="info-block">
   <div class="info-block-location">
-  <img src="../../../../../assets/location.png" alt="location">
+  <img src="assets/location.png" alt="location">
   <mat-form-field>
     <mat-select [(value)]="selected">
-      <mat-option value="minsk">Минск</mat-option>
-      <mat-option value="grodno">Гродно</mat-option>
-      <mat-option value="brest">Брест</mat-option>
+      <mat-option *ngFor="let city of cities" value="{{city}}">{{city}}</mat-option>
     </mat-select>
   </mat-form-field>
   </div>
   <div class="info-block-contacts">
-    <img src="../../../../../assets/viber2.png" alt="viber">Viber
-    <img src="../../../../../assets/velcom.png" alt="velcom">+375 29 302 10 21
+    <a href="https://chats.viber.com/21vek.by" target="_blank"><img src="assets/viber2.png" alt="viber">Viber</a>
+    <img src="assets/velcom.png" alt="velcom">+375 29 302 10 21
     <button mat-button [matMenuTriggerFor]="menu" class="contacts-btn">Еще</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item class="mat-menu-btns"><img src="../../../../../assets/mts.png" alt="mts">+375 29 502 10 21</button>
-      <button mat-menu-item class="mat-menu-btns"><img src="../../../../../assets/phone.png" alt="phone">+375 17 302 10 21</button>
-      <button mat-menu-item class="mat-menu-btns"><img src="../../../../../assets/telegram.png" alt="telegram">Telegram</button>
-      <button mat-menu-item class="mat-menu-btns"><img src="../../../../../assets/letter.png" alt="letter">Почта</button>
-      <button mat-menu-item class="mat-menu-btns"><img src="../../../../../assets/call.png" alt="call">Заказать звонок</button>
-      <button mat-menu-item class="mat-menu-btns"><img src="../../../../../assets/writeus.png" alt="writeus">Написать нам</button>
+      <div [ngClass]="['mat-menu-btns', 'menu-phones']"><img src="assets/mts.png" alt="mts">+375 29 502 10 21</div>
+      <div [ngClass]="['mat-menu-btns', 'menu-phones']"><img src="assets/phone.png" alt="phone">+375 17 302 10 21</div>
+      <a href="https://t.me/e21vekbot" target="_blank" mat-menu-item class="mat-menu-btns"><img src="assets/telegram.png" alt="telegram">Telegram</a>
+      <a href="mailto:21@21vek.by" target="_blank" mat-menu-item class="mat-menu-btns"><img src="assets/letter.png" alt="letter">Почта</a>
+      <button mat-menu-item class="mat-menu-btns"><img src="assets/call.png" alt="call">Заказать звонок</button>
+      <button mat-menu-item class="mat-menu-btns"><img src="assets/writeus.png" alt="writeus">Написать нам</button>
   </mat-menu>
   </div>
   <div class="info-block-worktime">
-    <img src="../../../../../assets/clock.png" alt="clock">
+    <img src="assets/clock.png" alt="clock">
     <div>
       <p>контакт центр</p>
       <p>c 8:00 до 22:00</p>
     </div>
   </div>
 </div>
+
+<!--https://ip-api.io/json/ -->
