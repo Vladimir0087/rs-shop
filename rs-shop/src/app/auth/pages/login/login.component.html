@@ -1,12 +1,12 @@
 <div class="login-page">
   <p class="login-page-name">Вход</p>
   <p class="login-label">Имя пользователя</p>
-  <input type="text">
+  <input type="text" [(ngModel)]="loginName">
   <p class="login-label">Электронная почта</p>
-  <input type="text">
+  <input type="text" [(ngModel)]="loginMail">
   <p class="login-label">Пароль</p>
-  <input type="text">
+  <input type="text" [(ngModel)]="loginPassword">
   <div class="login-btns">
-    <button>Войти</button>
+    <button (click)="login()">Войти</button>
   </div>
 </div>

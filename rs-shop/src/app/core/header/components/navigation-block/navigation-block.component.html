@@ -4,9 +4,14 @@
   <input type="text" class="search-input" placeholder="Поиск товаров">
   <button mat-button [matMenuTriggerFor]="menu"><img src="assets/account.png" alt="goods">Аккаунт</button>
   <mat-menu #menu="matMenu">
-    <div class="user-block">
+    <div *ngIf="(authService.userName)" class="user-block">
+      <img src="assets/avacat.jpg" alt="mts" class="user-ava">
+      <p class="user-name">{{authService.userName}}</p>
+      <button class="user-in-btn" (click)="authService.logOut()">Выйти</button>
+    </div>
+    <div *ngIf="(!authService.userName)" class="user-block">
       <img src="assets/userava.png" alt="mts" class="user-ava">
-      <button class="user-in-btn">Войти</button>
+      <button class="user-in-btn" (click)="coreService.goToLogin()">Войти</button>
     </div>
     <button mat-menu-item class="account-btns"><img src="assets/basket.png" alt="call">Корзина</button>
     <button mat-menu-item class="account-btns"><img src="assets/like.png" alt="writeus">Избранные товары</button>

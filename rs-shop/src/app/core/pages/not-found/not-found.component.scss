@@ -1,0 +1,26 @@
+.not-found-page{
+  max-width: 1090px;
+  margin: 0 auto;
+  margin-top: 30px;
+
+  div{
+    display: flex;
+    font-size: 40px;
+    max-width: 480px;
+    align-items: center;
+  }
+  .code-404{
+    font-size: 120px;
+    line-height: 0;
+    color: rgb(255, 4, 4);
+  }
+  .main-text-404{
+    margin-left: 20px;
+  }
+  .small-text-404{
+    font-size: 14px;
+    max-width: 480px;
+  }
+}
+
+

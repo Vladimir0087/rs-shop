@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
+import { RsShopModule } from './rs-shop/rs-shop.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     CoreModule,
     BrowserAnimationsModule,
-    AuthModule,
+    RsShopModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
