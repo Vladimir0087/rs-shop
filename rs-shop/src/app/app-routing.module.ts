@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './core/pages/not-found/not-found.component';
 import { MainPageComponent } from './rs-shop/pages/main-page/main-page.component';
+import { CatalogPageComponent } from './rs-shop/pages/catalog-page/catalog-page.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,7 @@ const routes: Routes = [
   },
   { path: 'mainpage', component: MainPageComponent },
   { path: '', redirectTo: 'mainpage', pathMatch: 'full' },
+  { path: 'catalog', component: CatalogPageComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

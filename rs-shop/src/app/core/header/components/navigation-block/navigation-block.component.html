@@ -1,6 +1,6 @@
 <div class="navigation-block">
-  <img src="assets/logo.png" alt="logo" class="shop-log">
-  <button><img src="assets/goods.png" alt="goods">Каталог товаров</button>
+  <img src="assets/logo.png" alt="logo" class="shop-log" (click)="coreService.goToMainPage()">
+  <button (click)="coreService.goToCatalog()"><img src="assets/goods.png" alt="goods">Каталог товаров</button>
   <input type="text" class="search-input" placeholder="Поиск товаров">
   <button mat-button [matMenuTriggerFor]="menu"><img src="assets/account.png" alt="goods">Аккаунт</button>
   <mat-menu #menu="matMenu">
@@ -22,7 +22,6 @@
 </div>
 <div class="navigation-by-categories-wrapper">
   <div class="navigation-by-categories">
-    <button>Корзина</button>
-    <button>Корзина</button>
+    <button *ngFor="let category of categories$ | async">{{category.name}}</button>
   </div>
 </div>

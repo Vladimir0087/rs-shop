@@ -18,6 +18,7 @@
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
         "airbnb-typescript/base",
+        "plugin:ngrx/recommended",
         "plugin:ngrx/recommended"
       ],
       "rules": {
@@ -52,6 +53,7 @@
         "ngrx/no-store-subscription": "off"
       },
       "plugins": [
+        "ngrx",
         "ngrx"
       ]
     },
