@@ -1,0 +1,18 @@
+<form class="search-form">
+  <mat-form-field>
+    <input type="text"
+           placeholder="Поиск товаров"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto"
+           (keyup)="keyUp$.next($event)">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let category of searchCategories$ | async" [value]="category.name">
+        {{category.name}}
+      </mat-option>
+      <mat-option *ngFor="let goods of searchGoods$ | async" [value]="goods.name">
+        {{goods.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

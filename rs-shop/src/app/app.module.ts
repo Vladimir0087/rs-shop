@@ -11,7 +11,6 @@ import { RsShopModule } from './rs-shop/rs-shop.module';
 import { appReducers } from './redux/reducers/app.reducers';
 import { CategoriesEffects } from './redux/effects/categories.effects';
 import { environment } from '../environments/environment';
-import { SubCategoriesEffects } from './redux/effects/sub-categories.effects copy';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,7 @@ import { SubCategoriesEffects } from './redux/effects/sub-categories.effects cop
     BrowserAnimationsModule,
     RsShopModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([CategoriesEffects, SubCategoriesEffects]),
+    EffectsModule.forRoot([CategoriesEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],

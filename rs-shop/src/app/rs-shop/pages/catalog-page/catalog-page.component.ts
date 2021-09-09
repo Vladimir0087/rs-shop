@@ -16,14 +16,23 @@ export class CatalogPageComponent implements OnInit {
   public categoriesIcons: string[] = ['assets/appliances.png', 'assets/electronics.png',
     'assets/computers.png', 'assets/furniture.png', 'assets/hobby.png'];
 
+  private categoryId: string = '';
+
+  private defaultSubCategory = 'appliances';
+
   constructor(private store: Store, public rsShopService: RsShopService) {}
 
   public openSubCategories(id: string): void {
+    this.categoryId = id;
     this.subCategories$ = this.store.select(selectSubCategories(id));
+  }
+
+  public goToGoodsOfCategoryPage(subCategoryId: string) {
+    this.rsShopService.goToGoodsOfCategoryPage(this.categoryId, subCategoryId);
   }
 
   ngOnInit() {
     this.categories$ = this.store.select(selectMainCategories);
-    this.subCategories$ = this.store.select(selectSubCategories('appliances'));
+    this.openSubCategories(this.defaultSubCategory);
   }
 }

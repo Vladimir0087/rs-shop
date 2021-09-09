@@ -14,19 +14,17 @@ export class CoreService {
     this.router.navigateByUrl('login');
   }
 
-  public goToMainPage():void {
+  public goToMainPage(): void {
     this.router.navigateByUrl('mainpage');
   }
 
-  public goToCatalog():void {
+  public goToCatalog(): void {
     this.router.navigateByUrl('catalog');
   }
 
-  // public getGoodsInCart(): any {
-  //   this.http.get('http://localhost:3004/goods').subscribe((data: any) => {
-  //     console.log(data);
-  //   });
-  // }
+  public getGoodsByValue(value:string): Observable<any> {
+    return this.http.get(`http://localhost:3004/goods/search?text=${value}`);
+  }
 
   public getCategories(): Observable<IStateCategory[]> {
     return this.http.get('http://localhost:3004/categories') as Observable<IStateCategory[]>;

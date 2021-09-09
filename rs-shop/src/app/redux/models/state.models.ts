@@ -1,7 +1,12 @@
+export interface ISubCategories{
+  id: string,
+  name: string,
+}
+
 export interface IStateCategory {
   id: string,
   name: string,
-  subCategories: { id: string, name: string }[],
+  subCategories: ISubCategories[],
 }
 
 export interface IStateSubCategory {
@@ -18,7 +23,19 @@ export interface IStateSubCategory {
 
 export interface IAppState {
   categories: IStateCategory[],
-  subCategories: IStateSubCategory[],
+  categoriesAndGoods: any,
+}
+
+export interface IGoodsOfCategory {
+  id: string,
+  name: string,
+  imageUrls: string[],
+  rating: number,
+  availableAmount: number,
+  price: number,
+  description: string,
+  isInCart: boolean,
+  isFavorite: boolean,
 }
 
 // -----------------------------------correct-------------------------------

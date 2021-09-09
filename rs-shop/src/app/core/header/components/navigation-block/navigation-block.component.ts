@@ -20,6 +20,5 @@ export class NavigationBlockComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new GetCategories());
     this.categories$ = this.store.select(selectMainCategories);
-    // this.coreService.getGoodsInCart();
   }
 }

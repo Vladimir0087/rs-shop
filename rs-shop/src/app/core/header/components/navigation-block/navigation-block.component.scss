@@ -28,13 +28,6 @@
   height: 56px;
   cursor: pointer;
 }
-.search-input{
-  height: 40px;
-  border-radius: 20px;
-  border: 1px solid rgb(175, 166, 166);
-  outline: none;
-  width: 35%;
-}
 .navigation-by-categories-wrapper{
   width: 100%;
   background: linear-gradient(90deg,#941e94,#e52e6b);
@@ -53,6 +46,7 @@
     background: none;
     border: none;
     color: rgb(255, 255, 255);
+    padding: 0;
   }
 }
 .account-btns{

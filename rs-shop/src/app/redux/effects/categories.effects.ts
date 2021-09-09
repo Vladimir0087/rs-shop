@@ -7,7 +7,7 @@ import { IStateCategory } from '../models/state.models';
 
 @Injectable()
 export class CategoriesEffects {
-  public loadMovies$ = createEffect(() => this.actions$.pipe(
+  private categories$ = createEffect(() => this.actions$.pipe(
     ofType<DataActions>(EDataActions.GetCategories),
     switchMap(() => this.coreService.getCategories()),
     map((categories: IStateCategory[]) => ({ type: EDataActions.SetCategories, payload: categories })),

@@ -5,6 +5,6 @@
     </div>
   </div>
   <div class="sub-categories">
-    <div *ngFor="let subCategory of subCategories$ | async" class="sub-category">{{subCategory.name}}</div>
+    <div *ngFor="let subCategory of subCategories$ | async" class="sub-category" (click)="goToGoodsOfCategoryPage(subCategory.id)">{{subCategory.name}}</div>
   </div>
 </div>
