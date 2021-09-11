@@ -22,6 +22,8 @@
 </div>
 <div class="navigation-by-categories-wrapper">
   <div class="navigation-by-categories">
-    <button *ngFor="let category of categories$ | async">{{category.name}}</button>
+    <button *ngFor="let category of categories$ | async"
+      (click)="rsShopService.goToGoodsOfCategoryPage(category.categoryId, category.subCategoryId)">
+      {{category.subCategoryName}}</button>
   </div>
 </div>

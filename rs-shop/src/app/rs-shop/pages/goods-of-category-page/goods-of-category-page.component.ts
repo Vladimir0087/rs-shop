@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectCategoryById, selectSubCategoryById } from 'src/app/redux/selectors/selectors';
 import { RsShopService } from 'src/app/rs-shop/service/rs-shop.service';
-import { IGoodsOfCategory, IStateCategory, ISubCategories } from 'src/app/redux/models/state.models';
+import { IGoods, IStateCategory, ISubCategories } from 'src/app/redux/models/state.models';
 
 @Component({
   selector: 'app-goods-of-category-page',
@@ -20,7 +20,13 @@ export class GoodsOfCategoryPageComponent implements OnInit {
 
   public subCategory$: Observable<ISubCategories | undefined> | undefined;
 
-  public goodsOfCategory: IGoodsOfCategory[] = [];
+  public goodsOfCategory: IGoods[] = [];
+
+  private categoryId = '';
+
+  private subCategoryId = '';
+
+  private startIndToGetGoods = 0;
 
   constructor(public rsShopService:RsShopService, private route: ActivatedRoute, private store: Store) {}
 
@@ -40,12 +46,21 @@ export class GoodsOfCategoryPageComponent implements OnInit {
     this.increaseRating = !this.increaseRating;
   }
 
+  public addGoods() {
+    this.rsShopService.getGoodsOfCategory(this.categoryId, this.subCategoryId, this.startIndToGetGoods.toString())
+      .subscribe((res) => { this.goodsOfCategory = this.goodsOfCategory.concat(res); });
+    this.startIndToGetGoods += 10;
+  }
+
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.rsShopService.getGoodsOfCategory(params.categoryId as string, params.subCategoryId as string)
-        .subscribe((res) => { this.goodsOfCategory = res; });
+      this.categoryId = params.categoryId;
+      this.subCategoryId = params.subCategoryId;
       this.category$ = this.store.select(selectCategoryById(params.categoryId));
       this.subCategory$ = this.store.select(selectSubCategoryById(params.categoryId, params.subCategoryId));
+      this.rsShopService.getGoodsOfCategory(params.categoryId, params.subCategoryId)
+        .subscribe((res) => { this.goodsOfCategory = res; });
+      this.startIndToGetGoods = 10;
     });
   }
 }

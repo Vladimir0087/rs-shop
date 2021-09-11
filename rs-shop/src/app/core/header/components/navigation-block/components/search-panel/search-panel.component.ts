@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component, ElementRef, OnInit, ViewChild,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
@@ -6,8 +8,9 @@ import {
   debounceTime, distinctUntilChanged, filter, map,
 } from 'rxjs/operators';
 import { CoreService } from 'src/app/core/service/core.service';
-import { ISubCategories } from 'src/app/redux/models/state.models';
-import { selectSubCategoriesByValue } from 'src/app/redux/selectors/selectors';
+import { IGoodsDetailed, ISubCategories } from 'src/app/redux/models/state.models';
+import { selectCategoryBySubcategoryId, selectSubCategoriesByValue } from 'src/app/redux/selectors/selectors';
+import { RsShopService } from 'src/app/rs-shop/service/rs-shop.service';
 
 @Component({
   selector: 'app-search-panel',
@@ -15,15 +18,32 @@ import { selectSubCategoriesByValue } from 'src/app/redux/selectors/selectors';
   styleUrls: ['./search-panel.component.scss'],
 })
 export class SearchPanelComponent implements OnInit {
+  public searchValue = '';
+
   public keyUp$: Subject<KeyboardEvent> = new Subject();
 
-  public searchGoods$: Observable<any> | undefined;
+  public searchGoods$: Observable<IGoodsDetailed[]> | undefined;
 
   public searchCategories$: Observable<ISubCategories[]> | undefined;
 
   public myControl = new FormControl();
 
-  constructor(public coreService: CoreService, private store: Store) {}
+  constructor(public coreService: CoreService, private store: Store, public rsShopService: RsShopService) {}
+
+  public goToGoodsOfCategoryPage(subCategoryId: string):void {
+    this.store.select(selectCategoryBySubcategoryId(subCategoryId)).subscribe((category) => {
+      if (category) this.rsShopService.goToGoodsOfCategoryPage(category.id, subCategoryId);
+    });
+    if (this.searchInput) this.searchInput.nativeElement.value = '';
+  }
+
+  public goToDetailedGoodsPage(categoryId: string, subCategoryId: string, goodsId: string):void {
+    this.coreService.goToDetailedGoodsPage(categoryId, subCategoryId, goodsId);
+    if (this.searchInput) this.searchInput.nativeElement.value = '';
+  }
+
+  @ViewChild('searchInput', { static: false })
+  searchInput: ElementRef | undefined;
 
   ngOnInit() {
     this.keyUp$.pipe(

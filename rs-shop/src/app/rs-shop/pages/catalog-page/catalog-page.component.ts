@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { ISubCategories } from 'src/app/redux/models/state.models';
 import { selectMainCategories, selectSubCategories } from 'src/app/redux/selectors/selectors';
+import { ICtegoriesAndSubCategoriesData } from '../../models/rs-shop.models';
 import { RsShopService } from '../../service/rs-shop.service';
 
 @Component({
@@ -9,9 +12,9 @@ import { RsShopService } from '../../service/rs-shop.service';
   styleUrls: ['./catalog-page.component.scss'],
 })
 export class CatalogPageComponent implements OnInit {
-  public categories$: any;
+  public categories$: Observable<ICtegoriesAndSubCategoriesData[]> | undefined;
 
-  public subCategories$: any;
+  public subCategories$: Observable<ISubCategories[] | undefined> | undefined;
 
   public categoriesIcons: string[] = ['assets/appliances.png', 'assets/electronics.png',
     'assets/computers.png', 'assets/furniture.png', 'assets/hobby.png'];

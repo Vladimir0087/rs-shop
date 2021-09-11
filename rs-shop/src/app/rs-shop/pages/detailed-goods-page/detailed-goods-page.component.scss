@@ -1,0 +1,88 @@
+.detailed-goods-page{
+  max-width: 1090px;
+  margin: 0 auto;
+  margin-top: 10px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  .breadcrumbs{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    text-decoration: underline;
+    font-size: 14px;
+    align-self: flex-start;
+
+    img{
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    button{
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+      font-size: 14px;
+    }
+
+    button:hover{
+      transition: 1s;
+      color: red;
+    }
+  }
+
+    .goods-name{
+      margin-top: 20px;
+      font-weight: 500;
+      font-size: 18px;
+    }
+
+    .photos{
+      margin: 30px 0;
+      height: auto;
+      width: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .super-icon{
+        position: absolute;
+        width: 90px;
+        height: auto;
+        top: 0;
+        right: 0;
+      }
+    }
+
+    .description{
+      max-width: 80%;
+    }
+
+    .btns-block{
+      width: 100%;
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+
+      button{
+        height: 30px;
+        background:rgb(235, 25, 25);
+        border: none;
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        width: 100px;
+        margin-left: 30px;
+      }
+
+      button:hover{
+        transition: 1s;
+        background:rgb(107, 13, 13);
+      }
+    }
+
+
+
+}

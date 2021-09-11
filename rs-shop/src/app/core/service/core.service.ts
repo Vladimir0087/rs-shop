@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IStateCategory } from 'src/app/redux/models/state.models';
+import { IGoodsDetailed, IStateCategory } from 'src/app/redux/models/state.models';
 
 @Injectable({
   providedIn: 'root',
@@ -22,8 +22,12 @@ export class CoreService {
     this.router.navigateByUrl('catalog');
   }
 
-  public getGoodsByValue(value:string): Observable<any> {
-    return this.http.get(`http://localhost:3004/goods/search?text=${value}`);
+  public getGoodsByValue(value:string): Observable<IGoodsDetailed[]> {
+    return this.http.get(`http://localhost:3004/goods/search?text=${value}`) as Observable<IGoodsDetailed[]>;
+  }
+
+  public goToDetailedGoodsPage(categoryId: string, subCategoryId: string, goodsId: string): void {
+    this.router.navigate([categoryId, subCategoryId, goodsId]);
   }
 
   public getCategories(): Observable<IStateCategory[]> {

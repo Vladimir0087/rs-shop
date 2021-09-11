@@ -1,7 +1,7 @@
 <div class="catalog">
   <div class="main-categories">
-    <div *ngFor="let category of categories$ | async; let i = index" (mouseover)="openSubCategories(category.id)">
-      <img [src]="categoriesIcons[i]" alt="icon">{{category.name}}
+    <div *ngFor="let category of categories$ | async; let i = index" (mouseover)="openSubCategories(category.categoryId)">
+      <img [src]="categoriesIcons[i]" alt="icon">{{category.categoryName}}
     </div>
   </div>
   <div class="sub-categories">

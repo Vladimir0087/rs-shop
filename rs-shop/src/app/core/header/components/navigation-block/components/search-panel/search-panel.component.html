@@ -3,14 +3,17 @@
     <input type="text"
            placeholder="Поиск товаров"
            matInput
+           #searchInput
            [formControl]="myControl"
            [matAutocomplete]="auto"
            (keyup)="keyUp$.next($event)">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let category of searchCategories$ | async" [value]="category.name">
+      <mat-option *ngFor="let category of searchCategories$ | async" [value]="category.name"
+      (click)="goToGoodsOfCategoryPage(category.id)">
         {{category.name}}
       </mat-option>
-      <mat-option *ngFor="let goods of searchGoods$ | async" [value]="goods.name">
+      <mat-option *ngFor="let goods of searchGoods$ | async" [value]="goods.name"
+      (click)="goToDetailedGoodsPage(goods.category, goods.subCategory, goods.id)">
         {{goods.name}}
       </mat-option>
     </mat-autocomplete>

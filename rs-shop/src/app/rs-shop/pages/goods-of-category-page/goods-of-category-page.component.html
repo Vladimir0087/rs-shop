@@ -8,22 +8,24 @@
   <div class="sorting-block">
     <span>Сортировать по</span>
     <button (click)="sortByPrice()">цене</button>
-    <button (click)="sortByRating()">рейтингу</button>
+    <button (click)="sortByRating()">популярности</button>
   </div>
   <div *ngFor="let goods of goodsOfCategory" class="goods-list">
     <img [src]="goods.imageUrls[0]" alt="goods" class="goods-image">
     <div>
       <div class="available" *ngIf="goods.availableAmount > 0;else absent">
-        <img src="assets/available.png" alt="icon">
+        <img src="assets/available.png" alt="icon" appAvailableAmount [availableAmount]="goods.availableAmount">
         <span>В наличии</span>
       </div>
       <ng-template #absent>
         <div class="available">
-          <img src="assets/disable.png" alt="icon">
+          <img src="assets/disable.png" alt="icon" appAvailableAmount [availableAmount]="goods.availableAmount">
           <span>Под заказ</span>
         </div>
       </ng-template>
-      <p class="goods-name">{{goods.name}}</p>
+      <nav class="goods-name">
+        <a [routerLink]="[goods.id]">{{goods.name}}</a>
+      </nav>
     </div>
     <div class="price-column">
       <p class="price">{{goods.price | number: '.2-2'}} p.</p>
@@ -35,5 +37,5 @@
       <button>В избранное</button>
     </div>
   </div>
-  <button class="show-more-btn">Показать больше</button>
+  <button class="show-more-btn" (click)="addGoods()">Показать больше</button>
 </div>

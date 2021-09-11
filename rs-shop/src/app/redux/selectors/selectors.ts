@@ -5,7 +5,9 @@ const selectCategories = createFeatureSelector<IStateCategory[]>('categories');
 
 export const selectMainCategories = createSelector(
   selectCategories,
-  (categories) => categories.map((el: IStateCategory) => ({ name: el.name, id: el.id })),
+  (categories) => categories.map((el: IStateCategory) => ({
+    categoryName: el.name, categoryId: el.id, subCategoryName: el.subCategories[0].name, subCategoryId: el.subCategories[0].id,
+  })),
 );
 
 export const selectSubCategories = (id: string) => createSelector(
@@ -28,4 +30,9 @@ export const selectCategoryById = (id: string) => createSelector(
 export const selectSubCategoryById = (categoryId: string, subCategoryId: string) => createSelector(
   selectCategoryById(categoryId),
   (categories) => categories?.subCategories.find((el: ISubCategories) => el.id === subCategoryId),
+);
+
+export const selectCategoryBySubcategoryId = (subcategoryId: string) => createSelector(
+  selectCategories,
+  (categories) => categories.find((el) => el.subCategories.find((elem) => elem.id === subcategoryId)),
 );
