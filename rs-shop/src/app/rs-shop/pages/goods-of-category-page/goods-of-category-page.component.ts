@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectCategoryById, selectSubCategoryById } from 'src/app/redux/selectors/selectors';
 import { RsShopService } from 'src/app/rs-shop/service/rs-shop.service';
@@ -28,7 +28,7 @@ export class GoodsOfCategoryPageComponent implements OnInit {
 
   private startIndToGetGoods = 0;
 
-  constructor(public rsShopService:RsShopService, private route: ActivatedRoute, private store: Store) {}
+  constructor(public rsShopService:RsShopService, private route: ActivatedRoute, private store: Store, private router: Router) {}
 
   public arrayRating(count: number): undefined[] {
     return Array(count);
@@ -59,7 +59,10 @@ export class GoodsOfCategoryPageComponent implements OnInit {
       this.category$ = this.store.select(selectCategoryById(params.categoryId));
       this.subCategory$ = this.store.select(selectSubCategoryById(params.categoryId, params.subCategoryId));
       this.rsShopService.getGoodsOfCategory(params.categoryId, params.subCategoryId)
-        .subscribe((res) => { this.goodsOfCategory = res; });
+        .subscribe((res) => {
+          if (!res.length) this.router.navigateByUrl('notfoundpage');
+          else this.goodsOfCategory = res;
+        });
       this.startIndToGetGoods = 10;
     });
   }

@@ -4,6 +4,7 @@
   margin-top: 10px;
   display: flex;
   flex-flow: column;
+  box-sizing: border-box;
 
   .breadcrumbs{
     margin-top: 5px;
@@ -56,9 +57,18 @@
     border-bottom: 1px solid rgb(175, 166, 166);
     height: 150px;
 
+    .image-continer{
+      width: 15%;
+      height: 150px;
+    }
+
     .goods-image{
-      max-width: 150px;
-      max-height: 150px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .data-container{
+      width: 60%;
     }
 
     .available{
@@ -82,6 +92,7 @@
     }
 
     .price-column{
+      width: 15%;
       display: flex;
       flex-flow: column;
       justify-content: space-between;

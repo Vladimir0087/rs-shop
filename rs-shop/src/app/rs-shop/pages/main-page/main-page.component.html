@@ -1,4 +1,52 @@
 <div class="main-page">
+  <swiper
+  [slidesPerView]="1"
+  [loop]= "true"
+  [loopedSlides] = "10"
+  [spaceBetween]="10"
+  [pagination]="{ clickable: true }"
+  [autoplay]="{ delay: 2500, disableOnInteraction: false}" class="main-swiper">
+		<ng-template *ngFor="let index of arrOfRandomIndexes" swiperSlide>
+      <div class="main-swiper-data-wrapper" (click)="goToDetailedPage(popularGoods[index]?.id)">
+        <div class="image">
+          <img [src]="popularGoods[index]?.imageUrls[0]" alt="photo">
+        </div>
+        <div class="description">
+          <p class="name">{{popularGoods[index]?.name}}</p>
+          <p class="price">цена: {{popularGoods[index]?.price}} р.</p>
+        </div>
+      </div>
+    </ng-template>
+	</swiper>
+  <swiper
+  class="popular-goods-swiper"
+  [slidesPerView]="1"
+  [loop]= "true"
+  [loopedSlides] = "10"
+  [spaceBetween]="10"
+  [pagination]="{ clickable: true }">
+		<ng-template *ngFor="let numberOfSlide of numberOfPopularSlides" swiperSlide>
+      <div class="popular-goods" *ngFor="let indexOfGoodsInSlide of indexesOfGoodsInSlide">
+        <div class="image" *ngIf="(numberOfSlide * 6 + indexOfGoodsInSlide) < popularGoods.length">
+          <img [src]="popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.imageUrls[0]" alt="photo"
+          (click)="goToDetailedPage(popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.id)">
+        </div>
+        <div class="description" *ngIf="(numberOfSlide * 6 + indexOfGoodsInSlide) < popularGoods.length">
+          <button (click)="goToDetailedPage(popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.id)" class="name">
+            {{popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.name | slice:0:70}}
+          </button>
+          <div class="rating">
+            <img src="assets/rating.png" alt="rating" *ngFor="let goodRate of arrayRating(5)">
+          </div>
+          <p class="price">цена: {{popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.price}} р.</p>
+        </div>
+      </div>
+    </ng-template>
+	</swiper>
+</div>
+
+
+<!-- <div class="main-page">
   <div class="main-slider">
     <div class="swiper-container">
       <div class="swiper-wrapper">
@@ -33,6 +81,6 @@
       <div class="swiper-button-prev"></div>
     </div>
   </div>
-</div>
+</div> -->
 
 

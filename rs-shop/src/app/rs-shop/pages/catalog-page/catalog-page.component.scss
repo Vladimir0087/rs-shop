@@ -5,16 +5,18 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
+  box-sizing: border-box;
 
   .main-categories{
-    width: 25%;
+    max-width: 350px;
 
     div{
       cursor: pointer;
       display: flex;
       align-items: center;
-      height: 30px;
+      height: 40px;
       border-right: 1px solid rgb(175, 166, 166);
+      padding-right: 15px;
 
       img{
         margin-right: 5px;
@@ -35,8 +37,10 @@
 
     .sub-category{
       cursor: pointer;
-      height: 30px; ;
-      width: 45%
+      height: 40px; ;
+      width: 45%;
+      display: flex;
+      align-items: center;
     }
 
     .sub-category:hover{
