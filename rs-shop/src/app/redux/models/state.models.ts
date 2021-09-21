@@ -37,6 +37,7 @@ export interface IGoods {
   isFavorite: boolean,
   category?: string,
   subCategory?: string,
+  amount?:number
 }
 
 export interface IGoodsDetailed {
@@ -51,6 +52,21 @@ export interface IGoodsDetailed {
   isFavorite: boolean,
   category: string,
   subCategory: string,
+  amount?:number
+}
+export interface IGoodsWithAmount {
+  id: string,
+  name: string,
+  imageUrls: string[],
+  rating: number,
+  availableAmount: number,
+  price: number,
+  description: string,
+  isInCart: boolean,
+  isFavorite: boolean,
+  category?: string,
+  subCategory?: string,
+  amount:number
 }
 
 // -----------------------------------correct-------------------------------

@@ -4,14 +4,14 @@
     <img src="assets/breadcrumbs.png" alt="arrow">
     <button (click)="rsShopService.goToGoodsOfCategoryPage(categoryId, subCategoryId)">{{(subCategory$ | async)?.name}}</button>
   </div>
-  <p class="goods-name">{{(goods$ | async)?.name}}</p>
+  <p class="goods-name">{{goods?.name}}</p>
   <div class="photos">
-    <img *ngIf="(goods$ | async)?.rating === 5" src="assets/super.jpg" alt="super" class="super-icon">
-    <img [src]="(goods$ | async)?.imageUrls[0]" alt="goods" class="goods-image">
+    <img *ngIf="goods?.rating === 5" src="assets/super.jpg" alt="super" class="super-icon">
+    <img [src]="goods?.imageUrls[0]" alt="goods" class="goods-image">
   </div>
-  <p class="description">{{(goods$ | async)?.description}}</p>
+  <p class="description">{{goods?.description}}</p>
   <div class="btns-block">
-    <button>В корзину</button>
-    <button>В избранное</button>
+    <button (click)="rsShopService.addToCart(goods)" appIsInCart [goods]="goods" [cartData] = "rsShopService.cartData">В корзину</button>
+    <button (click)="rsShopService.addToFavorite(goods)" appIsFavorite [goods]="goods" [favoriteData] = "rsShopService.favoriteData">В избранное</button>
   </div>
 </div>

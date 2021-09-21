@@ -12,7 +12,7 @@ import { RsShopService } from '../../service/rs-shop.service';
   styleUrls: ['./detailed-goods-page.component.scss'],
 })
 export class DetailedGoodsPageComponent implements OnInit {
-  public goods$: Observable<IGoodsDetailed> | Observable<any> | undefined;
+  public goods: IGoodsDetailed | any | undefined;
 
   public category$: Observable<IStateCategory | undefined> | undefined;
 
@@ -26,7 +26,9 @@ export class DetailedGoodsPageComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.goods$ = this.rsShopService.getGoodsById(params.goodsId as string);
+      this.rsShopService.getGoodsById(params.goodsId as string).subscribe((res) => {
+        this.goods = res;
+      });
       this.category$ = this.store.select(selectCategoryById(params.categoryId));
       this.subCategory$ = this.store.select(selectSubCategoryById(params.categoryId, params.subCategoryId));
       this.categoryId = params.categoryId;

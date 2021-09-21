@@ -30,6 +30,14 @@ export class CoreService {
     this.router.navigate([categoryId, subCategoryId, goodsId]);
   }
 
+  public goToCartPage(): void {
+    this.router.navigateByUrl('cart');
+  }
+
+  public goToFavoritePage(): void {
+    this.router.navigateByUrl('favorite');
+  }
+
   public getCategories(): Observable<IStateCategory[]> {
     return this.http.get('http://localhost:3004/categories') as Observable<IStateCategory[]>;
   }

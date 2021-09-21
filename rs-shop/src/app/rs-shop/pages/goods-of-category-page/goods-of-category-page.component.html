@@ -35,9 +35,11 @@
         <img src="assets/rating.png" alt="rating" *ngFor="let goodrate of arrayRating(goods.rating)">
         <img src="assets/emptyrating.png" alt="emptyrating" *ngFor="let emptyrate of arrayRating(5 - goods.rating)">
       </div>
-      <button>В корзину</button>
-      <button>В избранное</button>
+      <button (click)="rsShopService.addToCart(goods)" appIsInCart [goods]="goods" [cartData] = "rsShopService.cartData">В корзину</button>
+      <button (click)="rsShopService.addToFavorite(goods)" appIsFavorite [goods]="goods" [favoriteData] = "rsShopService.favoriteData">В избранное</button>
     </div>
   </div>
   <button class="show-more-btn" (click)="addGoods()">Показать больше</button>
 </div>
+
+<!-- appIsInCart [goods]="goods" [local] = "rsShopService.cartData" -->

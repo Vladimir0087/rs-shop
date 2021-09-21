@@ -50,7 +50,9 @@
         "class-methods-use-this": "off",
         "max-classes-per-file": "off",
         "ngrx/prefer-effect-callback-in-block-statement": "off",
-        "ngrx/no-store-subscription": "off"
+        "ngrx/no-store-subscription": "off",
+        "no-plusplus":"off",
+        "no-useless-escape":"off"
       },
       "plugins": [
         "ngrx",

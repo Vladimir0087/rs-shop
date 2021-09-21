@@ -1,0 +1,70 @@
+<div class="cart-page">
+  <div class="column-names">
+    <p class="name-column">Товар</p>
+    <p class="column-description">Описание товара</p>
+    <p>Количество</p>
+    <p>Доставка</p>
+    <p>Стоимость</p>
+  </div>
+  <div *ngFor="let goods of rsShopService.cartData" class="goods-cart-data">
+    <div class="goods-name-and-image">
+      <div class="goods-cart-image">
+        <img [src]="goods.imageUrls[0]" alt="goods">
+        <button class="cart-goods-delete" (click)="rsShopService.deleteCartGoods(goods.name)">удалить</button>
+      </div>
+      <button class="cart-goods-name" (click)="goToDetailedPage(goods.id)">{{goods.name}}</button>
+    </div>
+    <p class="goods-cart-description">{{goods.description | slice:0:100}}</p>
+    <div class="goods-number">
+      <button class="edit-number" (click)="decrementAmount(goods.name)">-</button>
+      <input type="text" class="goods-number-count" [(ngModel)]="goods.amount" (input)="checkAndCountTotalCost(goods.amount)">
+      <button class="edit-number" (click)="incrementAmount(goods.name)">+</button>
+    </div>
+    <div class="delivery">
+      <p>Самовывоз: завтра</p>
+      <p>Курьером: завтра</p>
+    </div>
+    <p class="goods-cost" *ngIf="goods.price && goods.amount && goods.amount > 0">{{goods.price * goods.amount | number: '.2-2'}} p.</p>
+  </div>
+  <div class="cart-total-cost"> Общая стоимость заказа: <p>{{totalCost | number: '.2-2'}} p.</p></div>
+  <div class="cart-user-info">
+    <form [formGroup]="userDataForm" novalidate (ngSubmit)="submit()">
+      <p>ФИО:</p>
+      <div>
+        <input type="text" [value]="userName" formControlName="userName">
+        <p *ngIf="userDataForm.controls['userName']?.invalid && userDataForm.controls['userName'].touched">Некорректные данные</p>
+      </div>
+      <p>Адрес доставки:</p>
+      <div>
+        <input type="text" [value]="deliveryAdress" formControlName="deliveryAdress">
+        <p *ngIf="userDataForm.controls['deliveryAdress']?.invalid && userDataForm.controls['deliveryAdress'].touched">Некорректные данные</p>
+      </div>
+      <p>Номер телефона:</p>
+      <div>
+        <input type="text" [value]="phoneNumber" formControlName="phoneNumber">
+        <p *ngIf="userDataForm.controls['phoneNumber']?.invalid && userDataForm.controls['phoneNumber'].touched">Некорректные данные</p>
+      </div>
+      <p>Желаемое время доставки:</p>
+      <div>
+        <input type="text" [value]="deliveryTime" formControlName="deliveryTime">
+        <p *ngIf="userDataForm.controls['deliveryTime']?.invalid && userDataForm.controls['deliveryTime'].touched">Некорректные данные</p>
+      </div>
+      <p>Комментарий к заказу:</p>
+      <div>
+        <input type="text" [value]="comment" formControlName="comment">
+        <p *ngIf="userDataForm.controls['comment']?.invalid && userDataForm.controls['comment'].touched">плохо</p>
+      </div>
+      <button type="submit">Оформить заказ</button>
+      <div *ngIf="isShowConfirmation" class="cart-confirmation-wrapper" (click)="coreService.goToMainPage()">
+        <div class="cart-confirmation">
+          <p>ФИО: {{userName}}</p>
+          <p>Адрес доставки: {{deliveryAdress}}</p>
+          <p>Номер телефона: {{phoneNumber}}</p>
+          <p>Желаемое время доставки:{{deliveryTime}}</p>
+          <p>Комментарий к заказу: {{comment}}</p>
+          <p>Общая сумма заказa: {{totalCost | number: '.2-2'}} p.</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
