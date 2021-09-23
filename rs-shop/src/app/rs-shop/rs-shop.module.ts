@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SwiperModule } from 'swiper/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { CatalogPageComponent } from './pages/catalog-page/catalog-page.component';
 import { SharedModule } from '../shared/shared.module';
@@ -35,6 +36,7 @@ import { IsFavoriteDirective } from './directives/is-favorite.directive';
     SharedModule,
     RouterModule,
     ReactiveFormsModule,
+    MatExpansionModule,
   ],
 })
 export class RsShopModule { }

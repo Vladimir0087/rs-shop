@@ -29,7 +29,7 @@ export class CartPageComponent implements OnInit {
     userName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
     deliveryAdress: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(250)]],
     phoneNumber: ['', [Validators.required, Validators.pattern('^[\+][0-9]+')]],
-    deliveryTime: ['', Validators.required],
+    deliveryTime: ['', [Validators.required, Validators.pattern('^[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[1-2][0-9]|3[0-1])--([0-1][0-9]|2[0-3]):([0-5][0-9])$')]],
     comment: ['', Validators.maxLength(250)],
   });
 
@@ -63,19 +63,35 @@ export class CartPageComponent implements OnInit {
   }
 
   public submit() {
+    if (!localStorage.getItem('userName')) {
+      // eslint-disable-next-line no-alert
+      alert('Зайдите в свой  аккаунт');
+      return;
+    }
+    if (this.rsShopService.cartData.length < 1) return;
     const controlers = this.userDataForm.controls;
     if (this.userDataForm.invalid) {
       Object.keys(controlers).forEach((controlName) => controlers[controlName].markAsTouched());
       return;
     }
+
     this.userName = controlers.userName.value;
     this.deliveryAdress = controlers.deliveryAdress.value;
     this.phoneNumber = controlers.phoneNumber.value;
     this.deliveryTime = controlers.deliveryTime.value;
     this.comment = controlers.comment.value;
     this.isShowConfirmation = true;
-    setTimeout(() => this.coreService.goToMainPage(), 5000);
-    this.rsShopService.clearCartData();
+    const currentDelivery = {
+      userName: controlers.userName.value,
+      deliveryAdress: controlers.deliveryAdress.value,
+      phoneNumber: controlers.phoneNumber.value,
+      deliveryTime: controlers.deliveryTime.value,
+      comment: controlers.comment.value,
+      totalCost: this.totalCost,
+    };
+    setTimeout(() => this.coreService.goToWaitingListPage(), 5000);
+    localStorage.setItem('cart', JSON.stringify(this.rsShopService.cartData));
+    this.rsShopService.clearCartData(currentDelivery);
   }
 
   ngOnInit(): void {

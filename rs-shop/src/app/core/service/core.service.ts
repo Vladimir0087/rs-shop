@@ -22,6 +22,10 @@ export class CoreService {
     this.router.navigateByUrl('catalog');
   }
 
+  public goToWaitingListPage(): void {
+    this.router.navigateByUrl('waiting-list');
+  }
+
   public getGoodsByValue(value:string): Observable<IGoodsDetailed[]> {
     return this.http.get(`http://localhost:3004/goods/search?text=${value}`) as Observable<IGoodsDetailed[]>;
   }

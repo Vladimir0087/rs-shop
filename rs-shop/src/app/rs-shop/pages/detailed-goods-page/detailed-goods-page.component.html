@@ -7,7 +7,16 @@
   <p class="goods-name">{{goods?.name}}</p>
   <div class="photos">
     <img *ngIf="goods?.rating === 5" src="assets/super.jpg" alt="super" class="super-icon">
-    <img [src]="goods?.imageUrls[0]" alt="goods" class="goods-image">
+    <swiper
+    [slidesPerView]="1"
+    [spaceBetween]="10"
+    [pagination]="{ clickable: true }" class="goods-swiper">
+      <ng-template *ngFor="let imageUrl of goods?.imageUrls" swiperSlide>
+        <div *ngIf="imageUrl" class="image">
+          <img [src]="imageUrl" alt="photo">
+        </div>
+      </ng-template>
+    </swiper>
   </div>
   <p class="description">{{goods?.description}}</p>
   <div class="btns-block">

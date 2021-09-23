@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { IGoodsDetailed, IStateCategory, ISubCategories } from 'src/app/redux/models/state.models';
 import { selectCategoryById, selectSubCategoryById } from 'src/app/redux/selectors/selectors';
 import { RsShopService } from '../../service/rs-shop.service';
+
+SwiperCore.use([Navigation, Pagination]);
 
 @Component({
   selector: 'app-detailed-goods-page',
   templateUrl: './detailed-goods-page.component.html',
   styleUrls: ['./detailed-goods-page.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DetailedGoodsPageComponent implements OnInit {
   public goods: IGoodsDetailed | any | undefined;

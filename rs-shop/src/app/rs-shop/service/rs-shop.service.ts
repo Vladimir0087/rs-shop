@@ -10,9 +10,15 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class RsShopService {
+  public popularGoods: IGoods[] | any = [];
+
   private cart = 'cart';
 
   private favorite = 'favorite';
+
+  private waitList = 'waitList';
+
+  public waitListData = JSON.parse(localStorage.getItem(this.waitList) as string) || [];
 
   public cartData: Array<IGoodsWithAmount> = JSON.parse(localStorage.getItem(this.cart) as string);
 
@@ -70,9 +76,16 @@ export class RsShopService {
     this.cartData = addedGoodsCart;
   }
 
-  public clearCartData():void {
+  public clearCartData(currentDelivery: object):void {
+    const order = {
+      cart: JSON.parse(localStorage.getItem(this.cart) as string),
+      // cart: this.cartData,
+      delivery: currentDelivery,
+    };
+    this.waitListData.push(order);
+    localStorage.setItem(this.waitList, JSON.stringify(this.waitListData));
     localStorage.removeItem(this.cart);
-    this.cartData = [];
+    this.cartData.length = 0;
   }
 
   public addToFavorite(goods: IGoodsDetailed | IGoods):void {

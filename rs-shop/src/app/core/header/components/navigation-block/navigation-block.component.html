@@ -15,8 +15,7 @@
     </div>
     <button mat-menu-item class="account-btns" (click)="coreService.goToCartPage()"><img src="assets/basket.png" alt="call">Корзина</button>
     <button mat-menu-item class="account-btns" (click)="coreService.goToFavoritePage()"><img src="assets/like.png" alt="writeus">Избранные товары</button>
-    <button mat-menu-item class="account-btns"><img src="assets/view.png" alt="call">Просмотренные</button>
-    <button mat-menu-item class="account-btns"><img src="assets/compare.png" alt="writeus">Списки сравнения</button>
+    <button mat-menu-item class="account-btns" (click)="coreService.goToWaitingListPage()"><img src="assets/waitlist.png" alt="call">Лист ожидания</button>
   </mat-menu>
   <button (click)="coreService.goToCartPage()"><img src="assets/basket.png" alt="goods">Корзина</button>
 </div>

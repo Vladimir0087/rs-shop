@@ -32,30 +32,30 @@
       <p>ФИО:</p>
       <div>
         <input type="text" [value]="userName" formControlName="userName">
-        <p *ngIf="userDataForm.controls['userName']?.invalid && userDataForm.controls['userName'].touched">Некорректные данные</p>
+        <p *ngIf="userDataForm.controls['userName']?.invalid && userDataForm.controls['userName'].touched">длина от 3 до 50</p>
       </div>
       <p>Адрес доставки:</p>
       <div>
         <input type="text" [value]="deliveryAdress" formControlName="deliveryAdress">
-        <p *ngIf="userDataForm.controls['deliveryAdress']?.invalid && userDataForm.controls['deliveryAdress'].touched">Некорректные данные</p>
+        <p *ngIf="userDataForm.controls['deliveryAdress']?.invalid && userDataForm.controls['deliveryAdress'].touched">длина от 3 до 250</p>
       </div>
       <p>Номер телефона:</p>
       <div>
         <input type="text" [value]="phoneNumber" formControlName="phoneNumber">
-        <p *ngIf="userDataForm.controls['phoneNumber']?.invalid && userDataForm.controls['phoneNumber'].touched">Некорректные данные</p>
+        <p *ngIf="userDataForm.controls['phoneNumber']?.invalid && userDataForm.controls['phoneNumber'].touched">+номер</p>
       </div>
       <p>Желаемое время доставки:</p>
       <div>
         <input type="text" [value]="deliveryTime" formControlName="deliveryTime">
-        <p *ngIf="userDataForm.controls['deliveryTime']?.invalid && userDataForm.controls['deliveryTime'].touched">Некорректные данные</p>
+        <p *ngIf="userDataForm.controls['deliveryTime']?.invalid && userDataForm.controls['deliveryTime'].touched">гггг/мм/дд--чч:мм</p>
       </div>
       <p>Комментарий к заказу:</p>
       <div>
         <input type="text" [value]="comment" formControlName="comment">
-        <p *ngIf="userDataForm.controls['comment']?.invalid && userDataForm.controls['comment'].touched">плохо</p>
+        <p *ngIf="userDataForm.controls['comment']?.invalid && userDataForm.controls['comment'].touched">длина до 250</p>
       </div>
       <button type="submit">Оформить заказ</button>
-      <div *ngIf="isShowConfirmation" class="cart-confirmation-wrapper" (click)="coreService.goToMainPage()">
+      <div *ngIf="isShowConfirmation" class="cart-confirmation-wrapper" (click)="coreService.goToWaitingListPage()">
         <div class="cart-confirmation">
           <p>ФИО: {{userName}}</p>
           <p>Адрес доставки: {{deliveryAdress}}</p>
