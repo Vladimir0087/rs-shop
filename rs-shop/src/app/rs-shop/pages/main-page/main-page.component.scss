@@ -1,0 +1,129 @@
+@import "~swiper/scss";
+@import "~swiper/scss/autoplay";
+@import "~swiper/scss/navigation";
+@import "~swiper/scss/pagination";
+
+.main-page{
+  padding: 0;
+  margin: 0;
+  margin: 0 auto;
+  max-width: 1090px;
+  box-sizing: border-box;
+
+  .main-swiper{
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(175, 166, 166);
+
+    .swiper-slide{
+      width: 100%;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main-swiper-data-wrapper{
+      display: flex;
+      height: 340px;
+      width: 90%;
+      border: 1px solid rgb(175, 166, 166);
+      cursor: pointer;
+
+      .image{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img{
+          max-width: 100%;
+          max-height: 80%;
+        }
+      }
+
+      .description{
+        width: 40%;
+        margin-left: 10px;
+        margin-top: 20px;
+        font-size: 22px;
+
+        .price{
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+
+  .popular-goods-swiper{
+    width: 100%;
+    margin-top: 20px;
+    overflow: hidden;
+
+    .swiper-slide{
+      width: 100%;
+      height: 500px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .popular-goods{
+      width: 30%;
+      height: 45%;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+
+    .image{
+      width: 50%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img{
+        max-width: 100%;
+        max-height: 80%;
+        cursor: pointer;
+      }
+    }
+
+    .description{
+      margin-top: 15px;
+      width: 50%;
+      margin-left: 10px;
+      font-size: 14px;
+
+      .name{
+        border: none;
+        background: none;
+        text-align: left;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .name:hover{
+        transition: 1s;
+        color: red;
+      }
+
+      .rating{
+        margin: 10px 0;
+      }
+    }
+
+  }
+
+  .project-description{
+    width: 90%;
+    margin: 10px auto;
+    p{
+      text-align: justify;
+    }
+    a:hover{
+      transition: 1s;
+      color: #ff0000;
+    }
+  }
+}

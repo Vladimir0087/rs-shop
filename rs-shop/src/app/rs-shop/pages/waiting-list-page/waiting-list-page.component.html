@@ -1,0 +1,28 @@
+<div class="waiting-list">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let order of rsShopService.waitListData" hideToggle>
+      <mat-expansion-panel-header [collapsedHeight]="'auto'" [expandedHeight]="'auto'">
+        <mat-panel-title>
+            <div class="delivery-info">
+              <p>ФИО: {{order.delivery.userName}}</p>
+              <p>Адрес доставки: {{order.delivery.deliveryAdress}}</p>
+              <p>Дата доставки: {{order.delivery.deliveryTime}}</p>
+              <p>Номер телефона: {{order.delivery.phoneNumber}}</p>
+              <p>Комментарий: {{order.delivery.comment}}</p>
+            </div>
+            <p class="total-cost">Общая стоимость: {{order.delivery.totalCost | number: '.2-2'}} p.</p>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="description">
+        <div class="description-goods" *ngFor="let goods of order.cart">
+          <p class="name-goods">{{goods.name}}</p>
+          <div class="amount-goods">
+            <p>Цена: {{goods.price | number: '.2-2'}} p.</p>
+            <p>Количество: {{goods.amount}} ед.</p>
+            <p>Стоимость: {{goods.price * goods.amount | number: '.2-2'}} p.</p>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

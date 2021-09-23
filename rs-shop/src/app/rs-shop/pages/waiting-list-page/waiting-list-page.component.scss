@@ -1,0 +1,48 @@
+.waiting-list{
+  max-width: 1090px;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-size: 14px;
+  box-sizing: border-box;
+
+  mat-panel-title{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .delivery-info{
+    margin: 10px 0;
+
+    p{
+      padding: 0;
+      margin: 0;
+    }
+
+  }
+
+  mat-panel-title{
+    margin: 0;
+  }
+  
+  .name-goods{
+    font-weight: 600;
+  }
+
+  .amount-goods{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .description{
+    p{
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .description-goods{
+    margin: 10px 0;
+    border-bottom: 1px solid rgb(175, 166, 166);;
+  }
+}
+

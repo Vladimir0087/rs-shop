@@ -1,0 +1,17 @@
+<div class="favorite-page">
+  <div *ngFor="let goods of rsShopService.favoriteData" class="goods-favorite-data">
+    <div class="goods-favorite-image">
+      <img [src]="goods.imageUrls[0]" alt="goods">
+    </div>
+    <div class="description-favorite-goods">
+      <button class="favorite-goods-name" (click)="rsShopService.goToDetailedPage(goods.id)">{{goods.name}}</button>
+      <div class="rating">
+        <img src="assets/rating.png" alt="rating" *ngFor="let goodrate of arrayRating(goods.rating)">
+        <img src="assets/emptyrating.png" alt="emptyrating" *ngFor="let emptyrate of arrayRating(5 - goods.rating)">
+      </div>
+      <p class="price">{{goods?.price | number: '.2-2'}} p.</p>
+      <button class="favorite-cart-btn" (click)="rsShopService.addToCart(goods)" appIsInCart [goods]="goods" [cartData] = "rsShopService.cartData">В корзину</button>
+      <button class="favorite-goods-delete" (click)="rsShopService.deleteFavoriteGoods(goods.name)">удалить из списка</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="detailed-goods-page">
+  <div class="breadcrumbs">
+    <span>{{(category$ | async)?.name}}</span>
+    <img src="assets/breadcrumbs.png" alt="arrow">
+    <button (click)="rsShopService.goToGoodsOfCategoryPage(categoryId, subCategoryId)">{{(subCategory$ | async)?.name}}</button>
+  </div>
+  <p class="goods-name">{{goods?.name}}</p>
+  <div class="photos">
+    <img *ngIf="goods?.rating === 5" src="assets/super.jpg" alt="super" class="super-icon">
+    <swiper
+    [slidesPerView]="1"
+    [spaceBetween]="10"
+    [pagination]="{ clickable: true }" class="goods-swiper">
+      <ng-template *ngFor="let imageUrl of goods?.imageUrls" swiperSlide>
+        <div *ngIf="imageUrl" class="image">
+          <img [src]="imageUrl" alt="photo">
+        </div>
+      </ng-template>
+    </swiper>
+  </div>
+  <p class="description">{{goods?.description}}</p>
+  <div class="btns-block">
+    <button (click)="rsShopService.addToCart(goods)" appIsInCart [goods]="goods" [cartData] = "rsShopService.cartData">В корзину</button>
+    <button (click)="rsShopService.addToFavorite(goods)" appIsFavorite [goods]="goods" [favoriteData] = "rsShopService.favoriteData">В избранное</button>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="goods-of-category-page">
+  <div class="breadcrumbs">
+    <span>{{(category$ | async)?.name}}</span>
+    <img src="assets/breadcrumbs.png" alt="arrow">
+    <span>{{(subCategory$ | async)?.name}}</span>
+  </div>
+  <p class="category-name">{{(subCategory$ | async)?.name}}</p>
+  <div class="sorting-block">
+    <span>Сортировать по</span>
+    <button (click)="sortByPrice()">цене</button>
+    <button (click)="sortByRating()">популярности</button>
+  </div>
+  <div *ngFor="let goods of goodsOfCategory" class="goods-list">
+    <div class="image-continer">
+      <img [src]="goods.imageUrls[0]" alt="goods" class="goods-image">
+    </div>
+    <div class="data-container">
+      <div class="available" *ngIf="goods.availableAmount > 0;else absent">
+        <img src="assets/available.png" alt="icon" appAvailableAmount [availableAmount]="goods.availableAmount">
+        <span>В наличии</span>
+      </div>
+      <ng-template #absent>
+        <div class="available">
+          <img src="assets/disable.png" alt="icon" appAvailableAmount [availableAmount]="goods.availableAmount">
+          <span>Под заказ</span>
+        </div>
+      </ng-template>
+      <nav class="goods-name">
+        <a [routerLink]="[goods.id]">{{goods.name}}</a>
+      </nav>
+    </div>
+    <div class="price-column">
+      <p class="price">{{goods.price | number: '.2-2'}} p.</p>
+      <div class="rating">
+        <img src="assets/rating.png" alt="rating" *ngFor="let goodrate of arrayRating(goods.rating)">
+        <img src="assets/emptyrating.png" alt="emptyrating" *ngFor="let emptyrate of arrayRating(5 - goods.rating)">
+      </div>
+      <button (click)="rsShopService.addToCart(goods)" appIsInCart [goods]="goods" [cartData] = "rsShopService.cartData">В корзину</button>
+      <button (click)="rsShopService.addToFavorite(goods)" appIsFavorite [goods]="goods" [favoriteData] = "rsShopService.favoriteData">В избранное</button>
+    </div>
+  </div>
+  <button class="show-more-btn" (click)="addGoods()">Показать больше</button>
+</div>
