@@ -121,5 +121,9 @@
     p{
       text-align: justify;
     }
+    a:hover{
+      transition: 1s;
+      color: #ff0000;
+    }
   }
 }
