@@ -68,5 +68,3 @@ export interface IGoodsWithAmount {
   subCategory?: string,
   amount:number
 }
-
-// -----------------------------------correct-------------------------------
