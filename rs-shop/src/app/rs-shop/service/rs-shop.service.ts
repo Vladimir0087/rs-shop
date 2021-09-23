@@ -12,6 +12,10 @@ import { catchError } from 'rxjs/operators';
 export class RsShopService {
   public popularGoods: IGoods[] | any = [];
 
+  public arrOfRandomIndexes: number[] = [];
+
+  public numberOfPopularSlides: number[] = [];
+
   private cart = 'cart';
 
   private favorite = 'favorite';
@@ -20,9 +24,9 @@ export class RsShopService {
 
   public waitListData = JSON.parse(localStorage.getItem(this.waitList) as string) || [];
 
-  public cartData: Array<IGoodsWithAmount> = JSON.parse(localStorage.getItem(this.cart) as string);
+  public cartData: Array<IGoodsWithAmount> = JSON.parse(localStorage.getItem(this.cart) as string) || [];
 
-  public favoriteData: Array<IGoodsDetailed | IGoods> = JSON.parse(localStorage.getItem(this.favorite) as string);
+  public favoriteData: Array<IGoodsDetailed | IGoods> = JSON.parse(localStorage.getItem(this.favorite) as string) || [];
 
   constructor(private router: Router, private http: HttpClient, private store: Store) {}
 
@@ -79,7 +83,6 @@ export class RsShopService {
   public clearCartData(currentDelivery: object):void {
     const order = {
       cart: JSON.parse(localStorage.getItem(this.cart) as string),
-      // cart: this.cartData,
       delivery: currentDelivery,
     };
     this.waitListData.push(order);
@@ -111,6 +114,6 @@ export class RsShopService {
 
   public clearFavoriteData():void {
     localStorage.removeItem(this.favorite);
-    this.favoriteData = [];
+    this.favoriteData.length = 0;
   }
 }

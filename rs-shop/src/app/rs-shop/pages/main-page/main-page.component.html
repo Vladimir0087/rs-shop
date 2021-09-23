@@ -6,14 +6,14 @@
   [spaceBetween]="10"
   [pagination]="{ clickable: true }"
   [autoplay]="{ delay: 2500, disableOnInteraction: false}" class="main-swiper">
-		<ng-template *ngFor="let index of arrOfRandomIndexes" swiperSlide>
-      <div class="main-swiper-data-wrapper" (click)="goToDetailedPage(popularGoods[index]?.id)">
+		<ng-template *ngFor="let index of rsShopService.arrOfRandomIndexes" swiperSlide>
+      <div class="main-swiper-data-wrapper" (click)="goToDetailedPage(rsShopService.popularGoods[index]?.id)">
         <div class="image">
-          <img [src]="popularGoods[index]?.imageUrls[0]" alt="photo">
+          <img [src]="rsShopService.popularGoods[index]?.imageUrls[0]" alt="photo">
         </div>
         <div class="description">
-          <p class="name">{{popularGoods[index]?.name}}</p>
-          <p class="price">цена: {{popularGoods[index]?.price}} р.</p>
+          <p class="name">{{rsShopService.popularGoods[index]?.name}}</p>
+          <p class="price">цена: {{rsShopService.popularGoods[index]?.price}} р.</p>
         </div>
       </div>
     </ng-template>
@@ -25,20 +25,20 @@
   [loopedSlides] = "10"
   [spaceBetween]="10"
   [pagination]="{ clickable: true }">
-		<ng-template *ngFor="let numberOfSlide of numberOfPopularSlides" swiperSlide>
+		<ng-template *ngFor="let numberOfSlide of rsShopService.numberOfPopularSlides" swiperSlide>
       <div class="popular-goods" *ngFor="let indexOfGoodsInSlide of indexesOfGoodsInSlide">
-        <div class="image" *ngIf="(numberOfSlide * 6 + indexOfGoodsInSlide) < popularGoods.length">
-          <img [src]="popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.imageUrls[0]" alt="photo"
-          (click)="goToDetailedPage(popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.id)">
+        <div class="image" *ngIf="(numberOfSlide * 6 + indexOfGoodsInSlide) < rsShopService.popularGoods.length">
+          <img [src]="rsShopService.popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.imageUrls[0]" alt="photo"
+          (click)="goToDetailedPage(rsShopService.popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.id)">
         </div>
-        <div class="description" *ngIf="(numberOfSlide * 6 + indexOfGoodsInSlide) < popularGoods.length">
-          <button (click)="goToDetailedPage(popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.id)" class="name">
-            {{popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.name | slice:0:70}}
+        <div class="description" *ngIf="(numberOfSlide * 6 + indexOfGoodsInSlide) < rsShopService.popularGoods.length">
+          <button (click)="goToDetailedPage(rsShopService.popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.id)" class="name">
+            {{rsShopService.popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.name | slice:0:70}}
           </button>
           <div class="rating">
             <img src="assets/rating.png" alt="rating" *ngFor="let goodRate of arrayRating(5)">
           </div>
-          <p class="price">цена: {{popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.price}} р.</p>
+          <p class="price">цена: {{rsShopService.popularGoods[numberOfSlide * 6 + indexOfGoodsInSlide]?.price}} р.</p>
         </div>
       </div>
     </ng-template>

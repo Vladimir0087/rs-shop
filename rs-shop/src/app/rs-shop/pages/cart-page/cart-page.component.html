@@ -10,7 +10,7 @@
     <div class="goods-name-and-image">
       <div class="goods-cart-image">
         <img [src]="goods.imageUrls[0]" alt="goods">
-        <button class="cart-goods-delete" (click)="rsShopService.deleteCartGoods(goods.name)">удалить</button>
+        <button class="cart-goods-delete" (click)="deleteCartGoods(goods.name)">удалить</button>
       </div>
       <button class="cart-goods-name" (click)="goToDetailedPage(goods.id)">{{goods.name}}</button>
     </div>

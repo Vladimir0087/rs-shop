@@ -52,6 +52,10 @@
       justify-content: center;
       align-items: center;
 
+      .goods-swiper{
+        z-index: 1;
+      }
+
       .image{
         display: flex;
         justify-content: center;
@@ -68,6 +72,8 @@
         height: auto;
         top: 0;
         right: 0;
+        z-index: 2;
+        opacity: 0.8;
       }
     }
 

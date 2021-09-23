@@ -37,10 +37,17 @@ export class CartPageComponent implements OnInit {
     private router: Router, private fb: FormBuilder) {}
 
   public countTotalCost(): void {
-    this.totalCost = this.rsShopService.cartData.filter((el) => el.amount >= 0).reduce((sum, el) => sum + el.amount * el.price, 0);
+    if (this.rsShopService.cartData) {
+      this.totalCost = this.rsShopService.cartData.filter((el) => el.amount >= 0).reduce((sum, el) => sum + el.amount * el.price, 0);
+    }
   }
 
-  public incrementAmount(goodsName: string) {
+  public deleteCartGoods(name: string): void {
+    this.rsShopService.deleteCartGoods(name);
+    this.countTotalCost();
+  }
+
+  public incrementAmount(goodsName: string): void {
     const goodsData = this.rsShopService.cartData.find((el) => el.name === goodsName);
     if (goodsData?.amount !== undefined) goodsData.amount++;
     this.countTotalCost();
@@ -68,7 +75,7 @@ export class CartPageComponent implements OnInit {
       alert('Зайдите в свой  аккаунт');
       return;
     }
-    if (this.rsShopService.cartData.length < 1) return;
+    if (this.rsShopService.cartData && this.rsShopService.cartData.length < 1) return;
     const controlers = this.userDataForm.controls;
     if (this.userDataForm.invalid) {
       Object.keys(controlers).forEach((controlName) => controlers[controlName].markAsTouched());
